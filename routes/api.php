@@ -29,8 +29,10 @@ Route::get('works', [WorkController::class, 'index']);
 Route::get('works/search', [WorkController::class, 'search']);
 Route::get('works/{id}', [WorkController::class, 'show']);
 
+//Testimonials
 Route::get('testimonials', [TestimonialController::class, 'index']);
 
+//Technologies
 Route::get('technologies', [TechnologyController::class, 'index']);
 Route::get('technologies/{name}', [TechnologyController::class, 'show']);
 
