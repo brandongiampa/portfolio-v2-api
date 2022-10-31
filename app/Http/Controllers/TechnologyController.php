@@ -23,10 +23,15 @@ class TechnologyController extends Controller
      * @param  str  $name
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show_by_name($name)
     {
         $find = Technology::where('name', $name)->get();
         return sizeof($find) !== 0 ? $find : response('No technology exists at this location.', 404);
+    }
+
+    public function show($id) {
+        $technology = Technology::find($id);
+        return sizeof($technology) > 0 ? $technology : response('No technology exists at this id.', 404);
     }
 
     /**
@@ -62,6 +67,6 @@ class TechnologyController extends Controller
     public function destroy($id) {
         $technology = Technology::destroy($id);
         $str = $technology > 0 ? "Technology at id #".$id." has been deleted." : "Error deleting technology at id #".$id.".";
-        return $str;
+        return ['messages'=>$str];
     }
 }
