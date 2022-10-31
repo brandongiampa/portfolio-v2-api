@@ -37,7 +37,7 @@ Route::get('technologies', [TechnologyController::class, 'index']);
 Route::get('technologies/{name}', [TechnologyController::class, 'show']);
 
 //PROTECTED ROUTES
-Route::group(['middleware' => ['auth:sanctum']], function() {
+// Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('logout', [UserController::class, 'logout']);
     Route::post('works', [WorkController::class, 'store']);
     Route::put('works/{id}', [WorkController::class, 'update']);
@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('technologies', [TechnologyController::class, 'store']);
     Route::put('technologies/{id}', [TechnologyController::class, 'update']);
     Route::delete('technologies/{id}', [TechnologyController::class, 'destroy']);
-});
+// });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
