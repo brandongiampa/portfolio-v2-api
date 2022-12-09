@@ -27,7 +27,13 @@ class TestimonialController extends Controller
         $error_msgs = $this->get_error_messages_array_for_post_request($request);
 
         if (sizeof($error_msgs) < 1) {
-            return Testimonial::create($request->all());
+            try {
+                mail("me@brandongiampa.com", "New Testimonial!", "Check your phpmyadmin NOW!");
+                $request['notification_email_sent'] = true;
+            }
+            finally {
+                return Testimonial::create($request->all());
+            }
         }
         else {
             return response($error_msgs, 400);
