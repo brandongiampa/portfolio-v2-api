@@ -6,6 +6,7 @@ use App\Http\Controllers\TechnologyController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +30,16 @@ Route::get('works', [WorkController::class, 'index']);
 Route::get('works/search', [WorkController::class, 'search']);
 Route::get('works/{id}', [WorkController::class, 'show']);
 
-//Testimonials
+//Testimonials (Website users can post as admin must approve)
 Route::get('testimonials', [TestimonialController::class, 'index']);
+Route::post('testimonials', [TestimonialController::class, 'store']);
 
 //Technologies
 Route::get('technologies', [TechnologyController::class, 'index']);
 Route::get('technologies/{name}', [TechnologyController::class, 'show']);
+
+//Email
+Route::post('emailer', [EmailController::class, 'store']);
 
 //PROTECTED ROUTES
 //Route::group(['middleware' => ['auth:sanctum']], function() {
@@ -42,7 +47,6 @@ Route::get('technologies/{name}', [TechnologyController::class, 'show']);
     Route::post('works', [WorkController::class, 'store']);
     Route::put('works/{id}', [WorkController::class, 'update']);
     Route::delete('works/{id}', [WorkController::class, 'destroy']);
-    Route::post('testimonials', [TestimonialController::class, 'store']);
     Route::put('testimonials/{id}', [TestimonialController::class, 'update']);
     Route::delete('testimonials/{id}', [TestimonialController::class, 'destroy']);
     Route::post('technologies', [TechnologyController::class, 'store']);

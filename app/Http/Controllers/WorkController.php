@@ -117,7 +117,7 @@ class WorkController extends Controller
             if ($work->update($request->all())) return $work;
             else return response(['messages'=>'There was an unknown error trying to process your request.'], 500);
         }
-        else return response(['messages'=>$arr], 500);
+        else return response(['messages'=>$arr], 400);
     }
 
     /**
