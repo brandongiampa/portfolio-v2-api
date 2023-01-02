@@ -60,7 +60,7 @@ class WorkController extends Controller
      */
     public function store(Request $request) {
         $request = $this->sanitize_split_strings($request);
-        $msgs = $this->get_error_messages_array_for_post_request($request);
+        $msgs = $this->get_error_messages_array_for_request($request);
 
         if (sizeof($msgs) < 1) return Work::create($request->all());
         else return response($msgs, 400);
